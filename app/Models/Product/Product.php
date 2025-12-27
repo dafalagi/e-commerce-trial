@@ -2,11 +2,9 @@
 
 namespace App\Models\Product;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class Product extends Model
+class Product extends BaseModel
 {
-    /** @use HasFactory<\Database\Factories\Product\ProductFactory> */
-    use HasFactory;
+    protected $table = 'prd_products';
 }
