@@ -11,7 +11,7 @@ class MigrateFresh extends Command
      *
      * @var string
      */
-    protected $signature = 'app:migrate-fresh';
+    protected $signature = 'db:migrate-fresh';
 
     /**
      * The console command description.
