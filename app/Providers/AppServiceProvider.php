@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
          */
         $this->app->register(\App\Providers\RegisterService\RegisterAuthFeatService::class);
         $this->app->register(\App\Providers\RegisterService\RegisterFileSystemFeatService::class);
+        $this->app->register(\App\Providers\RegisterService\RegisterProductFeatService::class);
     }
 
     /**
