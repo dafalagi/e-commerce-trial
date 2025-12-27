@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->double('price')->default(0);
-            $table->integer('stock_quantity')->default(0);
+            $table->integer('stock')->default(0);
 
             $table->integer('is_active')->default(1);
             $table->integer('version')->default(0);
