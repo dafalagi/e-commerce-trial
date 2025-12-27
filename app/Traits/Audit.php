@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Auth;
 
 trait Audit
 {
-
     public function prepareAuditActive($object)
     {
         $object->{'is_active'} =  1;
@@ -21,9 +20,7 @@ trait Audit
     {
         $object->{'uuid'} = generate_uuid();
         $object->{'created_at'} =  now()->timestamp;
-        $object->{'updated_at'} =  now()->timestamp;
         $object->{'created_by'}  =  Auth::user()->id ?? null;
-        $object->{'updated_by'} =  Auth::user()->id ?? null;
         $object->{'version'} = 0;
     }
 
@@ -72,30 +69,6 @@ trait Audit
 
         $object->save();
         return $message;
-    }
-
-    // Audit untuk integrasi
-    public function prepareAuditIntegrationInsert($object)
-    {
-        $object->{'uuid'} = generate_uuid();
-        $object->{'created_at'} =  now()->timestamp;
-        $object->{'updated_at'} =  now()->timestamp;
-        $object->{'created_by'} =  -98;
-        $object->{'updated_by'} =  -98;
-        $object->{'version'} = 0;
-    }
-
-    public function prepareAuditIntegrationUpdate($object)
-    {
-        $object->{'updated_at'} =  now()->timestamp;
-        $object->{'updated_by'} =  -98;
-        $object->{'version'} = $object->{'version'} + 1;
-    }
-
-    public function prepareAuditIntegrationRemove($object)
-    {
-        $object->{'deleted_at'} = now()->timestamp;
-        $object->{'deleted_by'} = -98;
     }
 
     // Validate version for optimistic locking
