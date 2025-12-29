@@ -17,6 +17,7 @@ return new class extends Migration
             
             $table->integer('user_id');
             $table->string('status');
+            $table->double('total_price');
 
             $table->integer('is_active')->default(1);
             $table->integer('version')->default(0);

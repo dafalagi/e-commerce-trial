@@ -22,6 +22,7 @@ class CartFactory extends Factory
 
             'user_id' => fake()->numberBetween(1, 10),
             'status' => collect(CartStatus::cases())->random()->value,
+            'total_price' => fake()->randomFloat(2, 10, 1000),
 
             'is_active' => 1,
             'version' => 0,
