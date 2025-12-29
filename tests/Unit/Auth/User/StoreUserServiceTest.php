@@ -20,7 +20,6 @@ class StoreUserServiceTest extends TestCase
         $dto = [
             'email' => 'test@gmail.com',
             'password' => 'password',
-            'password_confirmation' => 'password',
         ];
 
         $result = app('StoreUserService')->execute($dto);

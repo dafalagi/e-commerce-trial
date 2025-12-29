@@ -41,7 +41,7 @@ class StoreUserService extends DefaultService implements ServiceInterface
         return [
             'email' => ['required', 'email', new UniqueData('auth_users', 'email')],
             'email_verified_at' => ['nullable', 'date'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8'],
         ];
     }
 }
