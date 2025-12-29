@@ -48,7 +48,7 @@ class CreateCartService extends DefaultService implements ServiceInterface
     public function rules($dto)
     {
         return [
-            'user_uuid' => ['required_without:user_id', 'uuid', new ExistsUuid(new User)],
+            'user_uuid' => ['required', 'uuid', new ExistsUuid(new User)],
 
             'items' => ['required', 'array', 'min:1'],
             'items.*.product_uuid' => ['required', 'uuid', new ExistsUuid(new Product)],
