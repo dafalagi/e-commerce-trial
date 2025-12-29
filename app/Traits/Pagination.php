@@ -4,7 +4,6 @@ namespace App\Traits;
 
 trait Pagination
 {
-
     public function paginateData($object, $per_page, $page, $is_model = true)
     {
         if ($page < 1) {

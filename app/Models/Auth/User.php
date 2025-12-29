@@ -2,8 +2,7 @@
 
 namespace App\Models\Auth;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-
+use App\Models\Order\Cart;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,7 +11,6 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasApiTokens, CanResetPassword;
 
     protected $table = 'auth_users';
@@ -54,10 +52,11 @@ class User extends Authenticatable
         ];
     }
 
-    public function getRestrictOnDeleteRelations()
+    protected function getRestrictOnDeleteRelations(): array
     {
         return [
             'userRole',
+            'carts',
         ];
     }
 
@@ -69,5 +68,10 @@ class User extends Authenticatable
     public function role()
     {
         return $this->hasOneThrough(Role::class, UserRole::class, 'user_id', 'id', 'id', 'role_id');
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'user_id');
     }
 }
