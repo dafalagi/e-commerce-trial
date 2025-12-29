@@ -8,4 +8,12 @@ return [
         'deleted' => 'Cart successfully deleted.',
         'fetched' => 'Cart successfully fetched.',
     ],
+
+    /** Cart Item */
+    'cart_item' => [
+        'stored' => 'Cart Item successfully stored.',
+        'updated' => 'Cart Item successfully updated.',
+        'deleted' => 'Cart Item successfully deleted.',
+        'fetched' => 'Cart Item successfully fetched.',
+    ],
 ];
