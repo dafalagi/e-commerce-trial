@@ -14,4 +14,5 @@ return [
 
     'auth' => require __DIR__ . '/messages/success/auth-feat-success-messages.php',
     'file_system' => require __DIR__ . '/messages/success/file-system-feat-success-messages.php',
+    'order' => require __DIR__ . '/messages/success/order-feat-success-messages.php',
 ];
