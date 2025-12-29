@@ -7,6 +7,7 @@ return [
         'updated' => 'Cart successfully updated.',
         'deleted' => 'Cart successfully deleted.',
         'fetched' => 'Cart successfully fetched.',
+        'created' => 'Cart successfully created.',
     ],
 
     /** Cart Item */
