@@ -25,10 +25,11 @@ class MigrateFresh extends Command
      */
     public function handle()
     {
-        $this->info('Running migrate:fresh command...');
+        $this->info('Running migrate:fresh --seed command...');
         $this->call('migrate:fresh', ['--seed' => true]);
-        $this->call('passport:keys', ['--force' => true]);
-        $this->call('passport:client',['--personal' => true]);
         $this->info('Migrate fresh completed.');
+
+        // $this->call('passport:keys', ['--force' => true]);
+        // $this->call('passport:client',['--personal' => true]);
     }
 }
