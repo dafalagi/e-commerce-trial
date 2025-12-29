@@ -8,6 +8,8 @@ return [
         'deleted' => 'Cart successfully deleted.',
         'fetched' => 'Cart successfully fetched.',
         'created' => 'Cart successfully created.',
+        'edited' => 'Cart successfully edited.',
+        'removed' => 'Cart successfully removed.',
     ],
 
     /** Cart Item */
