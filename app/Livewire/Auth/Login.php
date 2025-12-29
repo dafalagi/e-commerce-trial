@@ -30,8 +30,6 @@ class Login extends Component
         
         session()->regenerate();
         
-        $this->showSuccessToast('Login successful! Welcome back.');
-        
         return redirect()->intended(route('products.index'));
     }
 
