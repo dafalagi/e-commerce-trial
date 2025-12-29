@@ -1,4 +1,4 @@
-<div class="fixed top-4 right-4 z-50 space-y-2">
+<div class="fixed top-4 right-4 z-60 space-y-2">
     @foreach($messages as $message)
     <div 
         wire:key="toast-{{ $message['id'] }}"
@@ -8,7 +8,7 @@
             setTimeout(() => {
                 show = false;
                 setTimeout(() => $wire.removeToast('{{ $message['id'] }}'), 300);
-            }, 4000);
+            }, 2000);
         "
         x-show="show"
         x-transition:enter="transition ease-out duration-300"

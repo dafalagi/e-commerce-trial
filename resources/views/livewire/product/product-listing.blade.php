@@ -22,18 +22,18 @@
             <!-- Sort Options -->
             <div class="flex items-center space-x-4">
                 <span class="text-sm font-medium text-gray-700">Sort by:</span>
-                <select wire:model.live="sortBy" class="block w-40 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <select wire:model.live="sort_by" class="block w-40 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     <option value="name">Name</option>
                     <option value="price">Price</option>
                     <option value="updated_at">Latest</option>
                 </select>
                 
                 <button 
-                    wire:click="changeSorting('{{ $sortBy }}')"
+                    wire:click="changeSorting('{{ $sort_by }}')"
                     class="p-2 text-gray-400 hover:text-gray-600 transition-colors"
                     title="Toggle sort direction"
                 >
-                    <svg class="h-5 w-5 transform {{ $sortDirection === 'desc' ? 'rotate-180' : '' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg class="h-5 w-5 transform {{ $sort_direction === 'desc' ? 'rotate-180' : '' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
                     </svg>
                 </button>

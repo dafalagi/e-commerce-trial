@@ -2,6 +2,7 @@
 
 namespace App\Services\Order\Cart;
 
+use App\Models\Auth\User;
 use App\Models\Order\Cart;
 use App\Services\DefaultService;
 use App\Services\ServiceInterface;
@@ -28,6 +29,15 @@ class GetCartService extends DefaultService implements ServiceInterface {
 
         if (isset($dto['search_param']) and $dto['search_param'] != null) {
             $model->where('status','ILIKE','%'.$dto['search_param'].'%');
+        }
+
+        if (isset($dto['user_id']) or isset($dto['user_uuid'])) {
+            $user_id = $dto['user_id'] ?? $this->findIdByUuid(User::query(), $dto['user_uuid']);
+            $model->where('user_id', $user_id);
+        }
+
+        if (isset($dto['status'])) {
+            $model->where('status', $dto['status']);
         }
 
         if (isset($dto['cart_uuid']) and $dto['cart_uuid'] != '') {

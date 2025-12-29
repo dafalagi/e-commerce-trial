@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-full">
+<div class="min-h-full" style="background-color: #f9fafb;">
     <nav class="bg-white border-b border-gray-200">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 justify-between">
@@ -18,6 +18,9 @@
                 <div class="hidden sm:ml-6 sm:flex sm:items-center">
                     <div class="relative ml-3">
                         <div class="flex items-center space-x-4">
+                            <!-- Cart Counter -->
+                            <livewire:components.cart-counter />
+                            
                             <span class="text-sm text-gray-700">Hello, {{ Auth::user()->email }}!</span>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -32,7 +35,7 @@
         </div>
     </nav>
 
-    <div class="py-10">
+    <div class="py-10" style="background-color: #f9fafb;">
         <header>
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <h1 class="text-3xl font-bold leading-tight tracking-tight text-gray-900">Products</h1>
@@ -44,5 +47,8 @@
             </div>
         </main>
     </div>
+    
+    <!-- Cart Modal -->
+    <livewire:components.cart-modal />
 </div>
 @endsection
