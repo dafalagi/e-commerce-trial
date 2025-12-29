@@ -16,6 +16,9 @@
     @livewireStyles
 </head>
 <body class="h-full font-sans antialiased">
+    <!-- Toast Container -->
+    <livewire:components.toast />
+    
     <div class="min-h-full">
         @yield('content')
     </div>

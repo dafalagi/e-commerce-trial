@@ -2,13 +2,15 @@
 
 namespace App\Livewire\Auth;
 
+use App\Traits\WithToast;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class Login extends Component
 {
+    use WithToast;
+    
     #[Rule('required|email')]
     public string $email = '';
     
@@ -22,12 +24,13 @@ class Login extends Component
         $this->validate();
         
         if (!Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
-            throw ValidationException::withMessages([
-                'email' => 'These credentials do not match our records.',
-            ]);
+            $this->showErrorToast('These credentials do not match our records.');
+            return;
         }
         
         session()->regenerate();
+        
+        $this->showSuccessToast('Login successful! Welcome back.');
         
         return redirect()->intended(route('products.index'));
     }

@@ -16,6 +16,9 @@
     @livewireStyles
 </head>
 <body class="h-full font-sans antialiased bg-gray-50">
+    <!-- Toast Container -->
+    <livewire:components.toast />
+    
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <div class="flex justify-center">
