@@ -30,13 +30,13 @@ trait Pagination
             'prev_page' => (int) $page - 1,
             'first_page' => 1,
             'last_page' => (int) number_format($count / $perPage, 0),
-            'next_page_url' => url()->current() . "?per_page=" . $perPage . "&page_number=" . ($page + 1),
-            'previous_page_url' => url()->current() . "?per_page=" . $perPage . "&page_number=" . ($page - 1),
-            'first_page_url' => url()->current() . "?per_page=" . $perPage . "&page_number=1",
+            'next_page_url' => url()->current() . "?per_page=" . $perPage . "&page=" . ($page + 1),
+            'previous_page_url' => url()->current() . "?per_page=" . $perPage . "&page=" . ($page - 1),
+            'first_page_url' => url()->current() . "?per_page=" . $perPage . "&page=1",
             'last_page_url' => url()->current()
                 . "?per_page="
                 . $perPage
-                . "&page_number="
+                . "&page="
                 . (number_format($count / $perPage, 0)),
             'from' => ($count > 0) ? (($page - 1) * $perPage) + 1 : 0,
             'to' => (($page - 1) * $perPage) + $perPage > $count ? $count : (($page - 1) * $perPage) + $perPage,
