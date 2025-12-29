@@ -21,6 +21,7 @@ class StoreRoleServiceTest extends TestCase
             'name' => 'Test Role',
             'code' => 'test_role',
             'description' => 'This is a test role',
+            'envs_eligibility' => 'web,admin,mobile',
         ];
 
         $result = app('StoreRoleService')->execute($dto);
