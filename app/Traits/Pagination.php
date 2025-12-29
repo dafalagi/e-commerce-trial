@@ -5,16 +5,16 @@ namespace App\Traits;
 trait Pagination
 {
 
-    public function paginateData($object, $perPage, $page, $isModel = true)
+    public function paginateData($object, $per_page, $page, $is_model = true)
     {
         if ($page < 1) {
             $page = 1;
         }
-        if ($isModel) {
-            return $object->skip($perPage * ($page - 1))->take($perPage);
+        if ($is_model) {
+            return $object->skip($per_page * ($page - 1))->take($per_page);
         } else {
             $res = [];
-            foreach ($object->skip($perPage * ($page - 1))->take($perPage) as $key => $value) {
+            foreach ($object->skip($per_page * ($page - 1))->take($per_page) as $key => $value) {
                 $res[] = $value;
             }
 
@@ -22,26 +22,26 @@ trait Pagination
         }
     }
 
-    public function paginationDetail($perPage, $page, $count)
+    public function paginationDetail($per_page, $page, $count)
     {
         return [
-            'data_per_page' => (int) $perPage,
+            'data_per_page' => (int) $per_page,
             'next_page' => (int) $page + 1,
             'prev_page' => (int) $page - 1,
             'first_page' => 1,
-            'last_page' => (int) number_format($count / $perPage, 0),
-            'next_page_url' => url()->current() . "?per_page=" . $perPage . "&page=" . ($page + 1),
-            'previous_page_url' => url()->current() . "?per_page=" . $perPage . "&page=" . ($page - 1),
-            'first_page_url' => url()->current() . "?per_page=" . $perPage . "&page=1",
+            'last_page' => (int) number_format($count / $per_page, 0),
+            'next_page_url' => url()->current() . "?per_page=" . $per_page . "&page=" . ($page + 1),
+            'previous_page_url' => url()->current() . "?per_page=" . $per_page . "&page=" . ($page - 1),
+            'first_page_url' => url()->current() . "?per_page=" . $per_page . "&page=1",
             'last_page_url' => url()->current()
                 . "?per_page="
-                . $perPage
+                . $per_page
                 . "&page="
-                . (number_format($count / $perPage, 0)),
-            'from' => ($count > 0) ? (($page - 1) * $perPage) + 1 : 0,
-            'to' => (($page - 1) * $perPage) + $perPage > $count ? $count : (($page - 1) * $perPage) + $perPage,
+                . (number_format($count / $per_page, 0)),
+            'from' => ($count > 0) ? (($page - 1) * $per_page) + 1 : 0,
+            'to' => (($page - 1) * $per_page) + $per_page > $count ? $count : (($page - 1) * $per_page) + $per_page,
             'current_page' => (int) $page,
-            'total_pages' => (int) ceil($count / $perPage),
+            'total_pages' => (int) ceil($count / $per_page),
             'total_data' => (int) $count
         ];
     }
