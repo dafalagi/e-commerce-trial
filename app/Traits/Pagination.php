@@ -38,7 +38,10 @@ trait Pagination
                 . $perPage
                 . "&page_number="
                 . (number_format($count / $perPage, 0)),
-            'total_page' => (int) ceil($count / $perPage),
+            'from' => ($count > 0) ? (($page - 1) * $perPage) + 1 : 0,
+            'to' => (($page - 1) * $perPage) + $perPage > $count ? $count : (($page - 1) * $perPage) + $perPage,
+            'current_page' => (int) $page,
+            'total_pages' => (int) ceil($count / $perPage),
             'total_data' => (int) $count
         ];
     }

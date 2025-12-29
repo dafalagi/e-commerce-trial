@@ -17,6 +17,11 @@ class GetProductService extends DefaultService implements ServiceInterface {
 
         $model = Product::orderBy($dto['sort_by'], $dto['sort_type']);
 
+        // Add secondary sort by id to ensure consistent ordering
+        if ($dto['sort_by'] !== 'id') {
+            $model->orderBy('id', 'desc');
+        }
+
         if (isset($dto['with'])) {
             $model->with($dto['with']);
         }

@@ -40,10 +40,7 @@
         </header>
         <main>
             <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <h2 class="text-lg font-semibold text-gray-900">Welcome to our E-commerce Store!</h2>
-                    <p class="mt-2 text-gray-600">This is where the product listing will be displayed.</p>
-                </div>
+                <livewire:product.product-listing />
             </div>
         </main>
     </div>
