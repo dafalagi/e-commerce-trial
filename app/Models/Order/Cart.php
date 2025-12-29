@@ -21,8 +21,20 @@ class Cart extends BaseModel
         ];
     }
 
+    public function getRestrictOnDeleteRelations(): array
+    {
+        return [
+            'cartItems',
+        ];
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class, 'cart_id');
     }
 }
