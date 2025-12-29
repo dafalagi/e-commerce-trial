@@ -33,7 +33,7 @@ class UpdateRolePermissionServiceTest extends TestCase
 
         $result = app('UpdateRolePermissionService')->execute($dto);
 
-        $this->assertEquals('Role Permission successfully updated', $result['message']);
+        $this->assertEquals('Role Permission successfully updated.', $result['message']);
     }
 
     public function test_success_store()
@@ -48,6 +48,6 @@ class UpdateRolePermissionServiceTest extends TestCase
 
         $result = app('UpdateRolePermissionService')->execute($dto);
 
-        $this->assertEquals('Role Permission successfully updated', $result['message']);
+        $this->assertEquals('Role Permission successfully updated.', $result['message']);
     }
 }

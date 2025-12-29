@@ -28,7 +28,7 @@ class DeleteUserServiceTest extends TestCase
         $result = app('DeleteUserService')->execute($dto);
 
         $this->assertEmpty($result['data']);
-        $this->assertEquals('User successfully deleted', $result['message']);
+        $this->assertEquals('User successfully deleted.', $result['message']);
     }
 
     public function test_fail_delete_version_not_match()

@@ -32,7 +32,7 @@ class UpdateRoleServiceTest extends TestCase
         $result = app('UpdateRoleService')->execute($dto);
 
         $this->assertInstanceOf(Role::class, $result['data']);
-        $this->assertEquals('Role successfully updated', $result['message']);
+        $this->assertEquals('Role successfully updated.', $result['message']);
         $this->assertEquals('Updated Role', $result['data']->name);
     }
 }

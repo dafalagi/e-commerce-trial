@@ -26,7 +26,7 @@ class StoreRoleServiceTest extends TestCase
         $result = app('StoreRoleService')->execute($dto);
 
         $this->assertInstanceOf(Role::class, $result['data']);
-        $this->assertEquals('Role successfully stored', $result['message']);
+        $this->assertEquals('Role successfully stored.', $result['message']);
         $this->assertEquals('Test Role', $result['data']->name);
     }
 }

@@ -33,6 +33,6 @@ class RemoveUserRoleServiceTest extends TestCase
 
         $result = app('RemoveUserRoleService')->execute($dto);
 
-        $this->assertEquals($result['message'], "Role successfully removed from User");
+        $this->assertEquals($result['message'], "Role successfully removed from User.");
     }
 }

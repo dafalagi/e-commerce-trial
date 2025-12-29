@@ -8,7 +8,6 @@
         <testsuite name="Unit">
             <!-- Auth Feat -->
             <directory>tests/Unit/Auth/User</directory>
-            <directory>tests/Unit/Auth/Auth</directory>
             <directory>tests/Unit/Auth/Role</directory>
             <directory>tests/Unit/Auth/UserRole</directory>
             <directory>tests/Unit/Auth/RolePermission</directory>

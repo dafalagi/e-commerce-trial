@@ -52,7 +52,7 @@ class User extends Authenticatable
         ];
     }
 
-    protected function getRestrictOnDeleteRelations(): array
+    public function getRestrictOnDeleteRelations(): array
     {
         return [
             'userRole',

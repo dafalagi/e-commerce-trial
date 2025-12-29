@@ -28,6 +28,6 @@ class AddUserRoleServiceTest extends TestCase
 
         $result = app('AddUserRoleService')->execute($dto);
 
-        $this->assertEquals($result['message'], "Role successfully added to User");
+        $this->assertEquals($result['message'], "Role successfully added to User.");
     }
 }

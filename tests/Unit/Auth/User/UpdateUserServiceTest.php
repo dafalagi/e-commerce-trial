@@ -31,7 +31,7 @@ class UpdateUserServiceTest extends TestCase
         $result = app('UpdateUserService')->execute($dto);
 
         $this->assertInstanceOf(User::class, $result['data']);
-        $this->assertEquals('User successfully updated', $result['message']);
+        $this->assertEquals('User successfully updated.', $result['message']);
     }
 
     public function test_fail_update_version_not_match()

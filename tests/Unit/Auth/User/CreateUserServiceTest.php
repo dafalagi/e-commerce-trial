@@ -30,6 +30,6 @@ class CreateUserServiceTest extends TestCase
         $result = app('CreateUserService')->execute($dto);
 
         $this->assertInstanceOf(User::class, $result['data']);
-        $this->assertEquals('User successfully created', $result['message']);
+        $this->assertEquals('User successfully created.', $result['message']);
     }
 }

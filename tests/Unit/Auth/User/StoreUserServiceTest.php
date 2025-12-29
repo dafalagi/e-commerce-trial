@@ -26,6 +26,6 @@ class StoreUserServiceTest extends TestCase
         $result = app('StoreUserService')->execute($dto);
 
         $this->assertInstanceOf(User::class, $result['data']);
-        $this->assertEquals('User successfully stored', $result['message']);
+        $this->assertEquals('User successfully stored.', $result['message']);
     }
 }

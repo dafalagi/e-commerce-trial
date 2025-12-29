@@ -29,6 +29,6 @@ class DeleteRoleServiceTest extends TestCase
         $result = app('DeleteRoleService')->execute($dto);
 
         $this->assertEmpty($result['data']);
-        $this->assertEquals('Role successfully deleted', $result['message']);
+        $this->assertEquals('Role successfully deleted.', $result['message']);
     }
 }

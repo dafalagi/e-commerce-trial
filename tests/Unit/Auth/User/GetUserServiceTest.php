@@ -23,7 +23,7 @@ class GetUserServiceTest extends TestCase
 
         $result = app('GetUserService')->execute($dto);
 
-        $this->assertEquals('User successfully fetched', $result['message']);
+        $this->assertEquals('User successfully fetched.', $result['message']);
         $this->assertEquals(2, $result['data']->count());
 
         $this->assertEquals($users[0]->uuid, $result['data'][0]->uuid);
