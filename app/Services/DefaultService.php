@@ -65,6 +65,11 @@ abstract class DefaultService implements ServiceInterface
 
             return $this->results;
         } else {
+            $validator = Validator::make($inputData, $this->rules($inputData), $this->messages($inputData));
+            if ($validator->fails()) {
+                throw new \Exception($validator->errors()->first(), 422);
+            }
+
             $this->process($inputData);
             return $this->results;
         }
