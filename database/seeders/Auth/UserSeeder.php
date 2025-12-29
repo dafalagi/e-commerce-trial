@@ -16,9 +16,9 @@ class UserSeeder extends Seeder
     {
         $master_admin = Role::where('code', 'master_admin')->first();
         app('CreateUserService')->execute([
-            'email' => 'developer@wangun.co',
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'email' => config('credential.default_email'),
+            'password' => config('credential.default_password'),
+            'password_confirmation' => config('credential.default_password'),
             'name' => 'Developer',
             'phone_number' => '081234567890',
             'role_uuid' => $master_admin->uuid,
