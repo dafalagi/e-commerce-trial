@@ -18,5 +18,6 @@ return [
         'updated' => 'Cart Item successfully updated.',
         'deleted' => 'Cart Item successfully deleted.',
         'fetched' => 'Cart Item successfully fetched.',
+        'removed' => 'Cart Item successfully removed.',
     ],
 ];
