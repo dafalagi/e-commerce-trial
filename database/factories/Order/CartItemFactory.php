@@ -22,6 +22,7 @@ class CartItemFactory extends Factory
             'cart_id' => fake()->numberBetween(1, 10),
             'product_id' => fake()->numberBetween(1, 10),
             'quantity' => fake()->numberBetween(1, 10),
+            'price' => fake()->randomFloat(2, 10, 100),
             'total_price' => fake()->randomFloat(2, 10, 1000),
 
             'is_active' => 1,
