@@ -18,6 +18,7 @@ class Notification extends BaseModel
             'deleted_at' => 'datetime:U',
 
             'type' => NotificationType::class,
+            'payload' => 'array',
         ];
     }
 

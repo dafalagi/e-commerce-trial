@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('message');
             $table->string('type');
             $table->integer('is_read')->default(0);
+            $table->json('payload')->nullable();
 
             $table->integer('is_active')->default(1);
             $table->integer('version')->default(0);

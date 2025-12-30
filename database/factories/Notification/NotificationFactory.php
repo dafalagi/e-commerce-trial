@@ -25,6 +25,7 @@ class NotificationFactory extends Factory
             'message' => fake()->paragraph(),
             'type' => collect(NotificationType::cases())->random()->value,
             'is_read' => 0,
+            'payload' => null,
 
             'is_active' => 1,
             'version' => 0,
