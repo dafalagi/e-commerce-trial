@@ -82,23 +82,15 @@
 
                                     <!-- Notification Icon -->
                                     <div class="flex items-start space-x-3">
-                                        {{-- @if($notification->type === 'order')
-                                            <div class="flex-shrink-0">
-                                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                                                    <svg class="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        @elseif($notification->type === 'promotion')
+                                        @if($notification->type->value === 'warning')
                                             <div class="flex-shrink-0">
                                                 <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
                                                     <svg class="w-4 h-4 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                                                     </svg>
                                                 </div>
                                             </div>
-                                        @else --}}
+                                        @else
                                             <div class="flex-shrink-0">
                                                 <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                                                     <svg class="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -106,7 +98,7 @@
                                                     </svg>
                                                 </div>
                                             </div>
-                                        {{-- @endif --}}
+                                        @endif
 
                                         <!-- Notification Content -->
                                         <div class="flex-1 min-w-0 pr-6">
