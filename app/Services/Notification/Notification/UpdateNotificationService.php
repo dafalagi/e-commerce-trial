@@ -24,6 +24,7 @@ class UpdateNotificationService extends DefaultService implements ServiceInterfa
         $model->message = $dto['message'] ?? $model->message;
         $model->type = $dto['type'] ?? $model->type;
         $model->is_read = $dto['is_read'] ?? $model->is_read;
+        $model->payload = $dto['payload'] ?? $model->payload;
 
         $this->validateVersion($model, $dto['version']);
         $this->prepareAuditUpdate($model);
@@ -58,6 +59,7 @@ class UpdateNotificationService extends DefaultService implements ServiceInterfa
             'message' => ['nullable', 'string'],
             'type' => ['nullable', Rule::enum(NotificationType::class)],
             'is_read' => ['nullable', 'boolean'],
+            'payload' => ['nullable', 'array'],
             
             'version' => ['required', 'integer'],
         ];

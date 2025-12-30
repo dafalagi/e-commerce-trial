@@ -45,11 +45,11 @@ class SendLowStockNotification implements ShouldQueue
             'title' => 'Low Stock Alert',
             'message' => "Product '{$this->product_name}' is running low on stock. Current stock: {$this->stock_level} units.",
             'type' => NotificationType::WARNING->value,
-            // 'payload' => [
-            //     'product_id' => $this->product_id,
-            //     'product_name' => $this->product_name,
-            //     'stock_level' => $this->stock_level
-            // ]
+            'payload' => [
+                'product_id' => $this->product_id,
+                'product_name' => $this->product_name,
+                'stock_level' => $this->stock_level
+            ]
         ])['data'];
 
         // Broadcast::on('user.' . $this->user_uuid)

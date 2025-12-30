@@ -24,6 +24,7 @@ class StoreNotificationService extends DefaultService implements ServiceInterfac
         $model->message = $dto['message'];
         $model->type = $dto['type'];
         $model->is_read = $dto['is_read'] ?? false;
+        $model->payload = $dto['payload'] ?? null;
 
         $this->prepareAuditActive($model);
         $this->prepareAuditInsert($model);
@@ -51,6 +52,7 @@ class StoreNotificationService extends DefaultService implements ServiceInterfac
             'message' => ['required', 'string'],
             'type' => ['required', Rule::enum(NotificationType::class)],
             'is_read' => ['nullable', 'boolean'],
+            'payload' => ['nullable', 'array'],
         ];
     }
 }
