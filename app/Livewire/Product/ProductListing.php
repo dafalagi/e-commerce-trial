@@ -5,6 +5,7 @@ namespace App\Livewire\Product;
 use App\Traits\WithToast;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -130,6 +131,7 @@ class ProductListing extends Component
         }
     }
     
+    #[On('products-updated')]
     public function getProducts()
     {
         $dto = [

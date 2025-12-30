@@ -158,6 +158,8 @@ class CartModal extends Component
             $this->loadCart();
             $this->showSuccessToast('Order placed successfully! Order #' . $order->uuid);
 
+            $this->dispatch('products-updated');
+
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
