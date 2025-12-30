@@ -9,5 +9,6 @@ Route::middleware(['web'])->group(function () {
 
     Route::middleware(['auth'])->group(function () {
         require __DIR__ . '/web/product/product.php';
+        require __DIR__ . '/web/order/order.php';
     });
 });

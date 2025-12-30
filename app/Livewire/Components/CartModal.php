@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Components;
 
+use App\Enums\Order\CartStatus;
 use App\Traits\WithToast;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -144,6 +145,56 @@ class CartModal extends Component
         } catch (\Exception $e) {
             DB::rollBack();
             $this->showErrorToast('Failed to clear cart. Please try again.');
+        }
+    }
+
+    public function checkout()
+    {
+        DB::beginTransaction();
+        try {
+            if (!$this->cart || $this->cart_items->isEmpty()) {
+                $this->showErrorToast('Your cart is empty!');
+                return;
+            }
+
+            foreach ($this->cart_items as $item) {
+                if ($item->quantity > $item->product->stock) {
+                    $this->showErrorToast("Sorry, {$item->product->name} has insufficient stock.");
+                    DB::rollBack();
+                    return;
+                }
+            }
+
+            $order = app('CreateOrderService')->execute([
+                'cart_uuid' => $this->cart->uuid
+            ], true)['data'];
+
+            app('UpdateCartService')->execute([
+                'cart_id' => $this->cart->id,
+                'status' => CartStatus::CHECKED_OUT->value,
+                'version' => $this->cart->version
+            ], true);
+
+            foreach ($this->cart_items as $item) {
+                $new_stock = $item->product->stock - $item->quantity;
+                app('UpdateProductService')->execute([
+                    'product_id' => $item->product->id,
+                    'stock' => $new_stock,
+                    'version' => $item->product->version
+                ], true);
+            }
+
+            $this->closeModal();
+            $this->loadCart();
+            $this->showSuccessToast('Order placed successfully! Order #' . $order->uuid);
+
+            // Redirect to order confirmation or order history
+            $this->dispatch('order-completed', orderId: $order->uuid);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $this->showErrorToast('Checkout failed. Please try again.');
         }
     }
 
