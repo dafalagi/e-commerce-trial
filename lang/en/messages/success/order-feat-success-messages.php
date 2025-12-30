@@ -29,4 +29,12 @@ return [
         'fetched' => 'Order successfully fetched.',
         'created' => 'Order successfully created.',
     ],
+
+    /** Order Item */
+    'order_item' => [
+        'stored' => 'Order Item successfully stored.',
+        'updated' => 'Order Item successfully updated.',
+        'deleted' => 'Order Item successfully deleted.',
+        'fetched' => 'Order Item successfully fetched.',
+    ],
 ];
