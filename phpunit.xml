@@ -20,6 +20,9 @@
             <directory>tests/Unit/Order/CartItem</directory>
             <directory>tests/Unit/Order/Order</directory>
             <directory>tests/Unit/Order/OrderItem</directory>
+
+            <!-- Notification Feat -->
+            <directory>tests/Unit/Notification/Notification</directory>
         </testsuite>
         <testsuite name="Feature">
             <!-- <directory>tests/Feature</directory> -->
