@@ -80,9 +80,9 @@
                             @endif
                         </button>
                         
-                        @if($product->stock <= 10 && $product->stock > 0)
+                        {{-- @if($product->stock <= 10 && $product->stock > 0)
                             <p class="text-sm text-orange-600 mt-2 text-center">Only {{ $product->stock }} left!</p>
-                        @endif
+                        @endif --}}
                     </div>
                 </div>
             @endforeach

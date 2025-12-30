@@ -13,6 +13,12 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory(50)->create();
+        Product::factory(10)->create();
+
+        for ($i = 1; $i <= 10; $i++) {
+            Product::factory()->create([
+                'stock' => rand(0, 10),
+            ]);
+        }
     }
 }
