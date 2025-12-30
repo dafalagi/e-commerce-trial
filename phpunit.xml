@@ -18,6 +18,7 @@
             <!-- Order Feat -->
             <directory>tests/Unit/Order/Cart</directory>
             <directory>tests/Unit/Order/CartItem</directory>
+            <directory>tests/Unit/Order/Order</directory>
         </testsuite>
         <testsuite name="Feature">
             <!-- <directory>tests/Feature</directory> -->

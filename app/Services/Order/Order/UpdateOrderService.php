@@ -36,6 +36,9 @@ class UpdateOrderService extends DefaultService implements ServiceInterface
 
     public function prepare($dto)
     {
+        if (isset($dto['order_uuid']))
+            $dto['order_id'] = $this->findIdByUuid(Order::query(), $dto['order_uuid']);
+
         if (isset($dto['cart_uuid']))
             $dto['cart_id'] = $this->findIdByUuid(Cart::query(), $dto['cart_uuid']);
 
