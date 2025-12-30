@@ -40,12 +40,12 @@ class CreateOrderService extends DefaultService implements ServiceInterface
                 })->get();
 
                 foreach ($admins as $admin) {
-                    SendLowStockNotification::dispatch(
-                        $admin->uuid,
-                        $item->product->id,
-                        $item->product->name,
-                        $new_stock
-                    )->onQueue('notifications');
+                    SendLowStockNotification::dispatch([
+                        'user_uuid' => $admin->uuid,
+                        'product_id' => $item->product->id,
+                        'product_name' => $item->product->name,
+                        'stock_level' => $new_stock,
+                    ]);
                 }
             }
         }

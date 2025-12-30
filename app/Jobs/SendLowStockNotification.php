@@ -23,12 +23,14 @@ class SendLowStockNotification implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct($user_uuid, $product_id, $product_name, $stock_level)
+    public function __construct($data)
     {
-        $this->user_uuid = $user_uuid;
-        $this->product_id = $product_id;
-        $this->product_name = $product_name;
-        $this->stock_level = $stock_level;
+        $this->onQueue('notifications');
+
+        $this->user_uuid = $data['user_uuid'];
+        $this->product_id = $data['product_id'];
+        $this->product_name = $data['product_name'];
+        $this->stock_level = $data['stock_level'];
     }
 
     /**
