@@ -25,6 +25,7 @@ class Cart extends BaseModel
     {
         return [
             'cartItems',
+            'order',
         ];
     }
 
@@ -36,5 +37,10 @@ class Cart extends BaseModel
     public function cartItems()
     {
         return $this->hasMany(CartItem::class, 'cart_id');
+    }
+
+    public function order()
+    {
+        return $this->hasOne(Order::class, 'cart_id');
     }
 }
