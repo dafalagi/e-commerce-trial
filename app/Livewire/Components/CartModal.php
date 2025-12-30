@@ -43,7 +43,13 @@ class CartModal extends Component
 
         if ($result['data']->isNotEmpty()) {
             $this->cart = $result['data']->first();
-            $this->cart_items = $this->cart->cartItems;
+            $this->cart_items = app('GetCartItemService')->execute([
+                'cart_uuid' => $this->cart->uuid,
+                'sort_by' => 'created_at',
+                'sort_type' => 'asc',
+                'with' => ['product']
+            ])['data'];
+
             $this->calculateTotals();
         } else {
             $this->cart = null;
@@ -126,7 +132,7 @@ class CartModal extends Component
                 return;
             }
 
-            app('DeleteCartService')->execute([
+            app('RemoveCartService')->execute([
                 'cart_uuid' => $this->cart->uuid,
                 'version' => $this->cart->version
             ], true);

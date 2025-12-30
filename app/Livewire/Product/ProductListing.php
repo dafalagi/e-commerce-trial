@@ -91,7 +91,7 @@ class ProductListing extends Component
                     return [
                         'product_uuid' => $item->product->uuid,
                         'quantity' => $item->quantity,
-                        'price' => $item->unit_price
+                        'price' => $item->price
                     ];
                 })->toArray();
 
