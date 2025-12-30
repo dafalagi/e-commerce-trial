@@ -36,6 +36,10 @@ class GetNotificationService extends DefaultService implements ServiceInterface 
             $model->where('user_id', $user_id);
         }
 
+        if (isset($dto['is_read'])) {
+            $model->where('is_read', $dto['is_read']);
+        }
+
         if (isset($dto['notification_uuid']) and $dto['notification_uuid'] != '') {
             $model->where('uuid', $dto['notification_uuid']);
             $data = $model->first();

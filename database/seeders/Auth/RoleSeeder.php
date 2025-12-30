@@ -15,9 +15,9 @@ class RoleSeeder extends Seeder
     {
         $roles = [
             [
-                'name' => 'Master Admin',
-                'code' => 'master_admin',
-                'description' => 'Master Admin',
+                'name' => 'Admin',
+                'code' => 'admin',
+                'description' => 'Admin',
                 'envs_eligibility' => 'admin',
             ],
         ];

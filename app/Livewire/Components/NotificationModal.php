@@ -48,21 +48,18 @@ class NotificationModal extends Component
         }
 
         try {
-            // Get unread notifications
-            $result = app('GetNotificationService')->execute([
+            $this->notifications = app('GetNotificationService')->execute([
                 'user_uuid' => Auth::user()->uuid,
                 'is_read' => false,
                 'sort_by' => 'created_at',
                 'sort_type' => 'desc',
                 'per_page' => 50,
                 'with_pagination' => true
-            ], true);
+            ], true)['data'];
 
-            $this->notifications = $result['data'];
             $this->unread_count = $this->notifications->count();
             $this->groupNotificationsByDate();
 
-            // Dispatch event to update notification counter
             $this->dispatch('notification-count-updated', count: $this->unread_count);
         } catch (\Exception $e) {
             $this->notifications = collect();
@@ -120,7 +117,7 @@ class NotificationModal extends Component
     private function groupNotificationsByDate()
     {
         $this->grouped_notifications = $this->notifications->groupBy(function ($notification) {
-            $date = date('Y-m-d', $notification->created_at);
+            $date = $notification->created_at->format('Y-m-d');
             $today = date('Y-m-d');
             $yesterday = date('Y-m-d', strtotime('-1 day'));
 
@@ -129,9 +126,9 @@ class NotificationModal extends Component
             } elseif ($date === $yesterday) {
                 return 'Yesterday';
             } else {
-                return date('F j, Y', $notification->created_at);
+                return $notification->created_at->format('F j, Y');
             }
-        })->toArray();
+        })->all();
     }
 
     public function render()

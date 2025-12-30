@@ -14,14 +14,14 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $master_admin = Role::where('code', 'master_admin')->first();
+        $admin = Role::where('code', 'admin')->first();
         app('CreateUserService')->execute([
             'email' => config('credential.default_email'),
             'password' => config('credential.default_password'),
             'password_confirmation' => config('credential.default_password'),
             'name' => 'Developer',
             'phone_number' => '081234567890',
-            'role_uuid' => $master_admin->uuid,
+            'role_uuid' => $admin->uuid,
         ]);
     }
 }

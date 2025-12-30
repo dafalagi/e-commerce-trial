@@ -2,7 +2,9 @@
 
 namespace App\Services\Order\Order;
 
+use App\Enums\Order\CartStatus;
 use App\Enums\Order\PaymentStatus;
+use App\Jobs\SendLowStockNotification;
 use App\Models\Auth\User;
 use App\Models\Order\Cart;
 use App\Rules\ExistsUuid;
@@ -14,6 +16,39 @@ class CreateOrderService extends DefaultService implements ServiceInterface
     public function process($dto)
     {
         $dto = $this->prepare($dto);
+
+        app('UpdateCartService')->execute([
+            'cart_id' => $dto['cart']->id,
+            'status' => CartStatus::CHECKED_OUT->value,
+            'version' => $dto['cart']->version
+        ], true);
+
+        foreach ($dto['cart']->cartItems as $item) {
+            if ($item->quantity > $item->product->stock)
+                throw new \Exception("Sorry, {$item->product->name} has insufficient stock.");
+
+            $new_stock = $item->product->stock - $item->quantity;
+            app('UpdateProductService')->execute([
+                'product_id' => $item->product->id,
+                'stock' => $new_stock,
+                'version' => $item->product->version
+            ], true);
+
+            if ($new_stock < 10) {
+                $admins = User::whereHas('role', function ($query) {
+                    $query->where('code', 'admin');
+                })->get();
+
+                foreach ($admins as $admin) {
+                    SendLowStockNotification::dispatch(
+                        $admin->uuid,
+                        $item->product->id,
+                        $item->product->name,
+                        $new_stock
+                    )->onQueue('notifications');
+                }
+            }
+        }
 
         $order = app('StoreOrderService')->execute([
             'user_id' => $dto['cart']->user_id,

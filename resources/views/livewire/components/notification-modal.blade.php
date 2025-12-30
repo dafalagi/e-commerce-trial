@@ -82,7 +82,7 @@
 
                                     <!-- Notification Icon -->
                                     <div class="flex items-start space-x-3">
-                                        @if($notification->type === 'order')
+                                        {{-- @if($notification->type === 'order')
                                             <div class="flex-shrink-0">
                                                 <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
                                                     <svg class="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -98,7 +98,7 @@
                                                     </svg>
                                                 </div>
                                             </div>
-                                        @else
+                                        @else --}}
                                             <div class="flex-shrink-0">
                                                 <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                                                     <svg class="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -106,14 +106,14 @@
                                                     </svg>
                                                 </div>
                                             </div>
-                                        @endif
+                                        {{-- @endif --}}
 
                                         <!-- Notification Content -->
                                         <div class="flex-1 min-w-0 pr-6">
                                             <h4 class="text-sm font-medium text-gray-900 mb-1">{{ $notification->title }}</h4>
                                             <p class="text-sm text-gray-600 mb-2">{{ $notification->message }}</p>
                                             <p class="text-xs text-gray-500">
-                                                {{ date('g:i A', $notification->created_at) }}
+                                                {{ $notification->created_at->format('g:i A') }}
                                             </p>
                                         </div>
                                     </div>

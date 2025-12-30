@@ -96,7 +96,7 @@ class CartModal extends Component
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            $this->showErrorToast('Failed to update cart. Please try again.');
+            $this->showErrorToast($e->getMessage() ?: 'Failed to update cart. Please try again.');
         }
     }
 
@@ -117,7 +117,7 @@ class CartModal extends Component
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            $this->showErrorToast('Failed to remove item. Please try again.');
+            $this->showErrorToast($e->getMessage() ?: 'Failed to remove item. Please try again.');
         }
     }
 
@@ -125,11 +125,8 @@ class CartModal extends Component
     {
         DB::beginTransaction();
         try {
-            if (!$this->cart) {
-                DB::rollBack();
-                $this->showErrorToast('No active cart to clear.');
-                return;
-            }
+            if (!$this->cart)
+                throw new \Exception('No active cart to clear.');
 
             app('RemoveCartService')->execute([
                 'cart_uuid' => $this->cart->uuid,
@@ -142,7 +139,7 @@ class CartModal extends Component
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            $this->showErrorToast('Failed to clear cart. Please try again.');
+            $this->showErrorToast($e->getMessage() ?: 'Failed to clear cart. Please try again.');
         }
     }
 
@@ -150,37 +147,12 @@ class CartModal extends Component
     {
         DB::beginTransaction();
         try {
-            if (!$this->cart || $this->cart_items->isEmpty()) {
-                $this->showErrorToast('Your cart is empty!');
-                return;
-            }
-
-            foreach ($this->cart_items as $item) {
-                if ($item->quantity > $item->product->stock) {
-                    $this->showErrorToast("Sorry, {$item->product->name} has insufficient stock.");
-                    DB::rollBack();
-                    return;
-                }
-            }
+            if (!$this->cart || $this->cart_items->isEmpty())
+                throw new \Exception('Your cart is empty.');
 
             $order = app('CreateOrderService')->execute([
                 'cart_uuid' => $this->cart->uuid
             ], true)['data'];
-
-            app('UpdateCartService')->execute([
-                'cart_id' => $this->cart->id,
-                'status' => CartStatus::CHECKED_OUT->value,
-                'version' => $this->cart->version
-            ], true);
-
-            foreach ($this->cart_items as $item) {
-                $new_stock = $item->product->stock - $item->quantity;
-                app('UpdateProductService')->execute([
-                    'product_id' => $item->product->id,
-                    'stock' => $new_stock,
-                    'version' => $item->product->version
-                ], true);
-            }
 
             $this->closeModal();
             $this->loadCart();
@@ -189,7 +161,7 @@ class CartModal extends Component
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            $this->showErrorToast('Checkout failed. Please try again.');
+            $this->showErrorToast($e->getMessage() ?: 'Failed to checkout. Please try again.');
         }
     }
 
