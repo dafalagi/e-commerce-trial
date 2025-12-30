@@ -43,7 +43,7 @@ class OrderHistoryModal extends Component
             'sort_by' => 'created_at',
             'sort_type' => 'desc',
             'per_page' => 50,
-            'with' => ['orderItems'], // Load order items
+            'with' => ['orderItems'],
             'with_pagination' => true
         ], true);
 
