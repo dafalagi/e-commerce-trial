@@ -8,12 +8,12 @@ enum PaymentStatus: string
     case PAID = 'paid';
     case FAILED = 'failed';
 
-    public static function labels(): array
+    public function label(): string
     {
-        return [
-            self::PENDING->value => 'Pending',
-            self::PAID->value => 'Paid',
-            self::FAILED->value => 'Failed',
-        ];
+        return match($this) {
+            self::PENDING => 'Pending',
+            self::PAID => 'Paid',
+            self::FAILED => 'Failed',
+        };
     }
 }
