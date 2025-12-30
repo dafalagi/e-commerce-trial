@@ -14,6 +14,22 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
+
+    <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
+    <script>
+
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        let pusher = new Pusher('1ed7930cab4b02dcdb49', {
+            cluster: 'ap1'
+        });
+
+        let channel = pusher.subscribe('my-channel');
+        channel.bind('my-event', function(data) {
+        alert(JSON.stringify(data));
+        });
+    </script>
 </head>
 <body class="h-full font-sans antialiased">
     <!-- Toast Container -->
