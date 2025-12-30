@@ -1,4 +1,3 @@
-<!-- Cart Modal Overlay -->
 <div 
     x-data="{ open: @entangle('is_open') }"
     x-show="open"
