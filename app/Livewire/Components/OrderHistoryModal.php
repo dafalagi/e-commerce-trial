@@ -10,8 +10,6 @@ class OrderHistoryModal extends Component
 {
     public $is_open = false;
     public $orders;
-    public $selectedOrder = null;
-    public $orderItems = null;
 
     public function mount()
     {
@@ -31,8 +29,6 @@ class OrderHistoryModal extends Component
     public function closeModal()
     {
         $this->is_open = false;
-        $this->selectedOrder = null;
-        $this->orderItems = null;
     }
 
     public function loadOrders()
@@ -47,6 +43,7 @@ class OrderHistoryModal extends Component
             'sort_by' => 'created_at',
             'sort_type' => 'desc',
             'per_page' => 50,
+            'with' => ['orderItems'], // Load order items
             'with_pagination' => true
         ], true);
 
