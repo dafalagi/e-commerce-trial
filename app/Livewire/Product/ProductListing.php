@@ -131,7 +131,7 @@ class ProductListing extends Component
         }
     }
     
-    #[On('products-updated')]
+    #[On('product-updated')]
     public function getProducts()
     {
         $dto = [

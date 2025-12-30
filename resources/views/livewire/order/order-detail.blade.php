@@ -7,7 +7,7 @@
                     <div>
                         <h1 class="text-2xl font-bold text-gray-900">Order Details</h1>
                         <p class="text-sm text-gray-600">Order #{{ substr($order->uuid, 0, 8) }}</p>
-                        <p class="text-sm text-gray-500">Placed on {{ $order->created_at->format('F j, Y \a\t g:i A') }}</p>
+                        <p class="text-sm text-gray-500">Placed on {{ date('F j, Y \a\t g:i A', $order->created_at) }}</p>
                     </div>
                     <div class="text-right">
                         <span class="inline-flex items-center px-3 py-2 rounded-full text-sm font-medium

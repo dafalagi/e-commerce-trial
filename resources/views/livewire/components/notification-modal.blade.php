@@ -113,7 +113,7 @@
                                             <h4 class="text-sm font-medium text-gray-900 mb-1">{{ $notification->title }}</h4>
                                             <p class="text-sm text-gray-600 mb-2">{{ $notification->message }}</p>
                                             <p class="text-xs text-gray-500">
-                                                {{ $notification->created_at->format('g:i A') }}
+                                                {{ date('g:i A', $notification->created_at) }}
                                             </p>
                                         </div>
                                     </div>

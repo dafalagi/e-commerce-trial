@@ -117,7 +117,7 @@ class NotificationModal extends Component
     private function groupNotificationsByDate()
     {
         $this->grouped_notifications = $this->notifications->groupBy(function ($notification) {
-            $date = $notification->created_at->format('Y-m-d');
+            $date = date('Y-m-d', $notification->created_at);
             $today = date('Y-m-d');
             $yesterday = date('Y-m-d', strtotime('-1 day'));
 
@@ -126,7 +126,7 @@ class NotificationModal extends Component
             } elseif ($date === $yesterday) {
                 return 'Yesterday';
             } else {
-                return $notification->created_at->format('F j, Y');
+                return date('F j, Y', $notification->created_at);
             }
         })->all();
     }
