@@ -12,6 +12,7 @@ class Order extends BaseModel
     protected function casts(): array
     {
         return [
+            'deleted_at' => 'datetime:U',
             'payment_status' => PaymentStatus::class,
         ];
     }

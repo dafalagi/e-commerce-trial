@@ -26,6 +26,13 @@ class BaseModel extends Model
         'deleted_at'
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'deleted_at' => 'datetime:U',
+        ];
+    }
+
     public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by');

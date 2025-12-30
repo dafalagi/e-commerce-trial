@@ -13,6 +13,7 @@ class Cart extends BaseModel
     protected function casts(): array
     {
         return [
+            'deleted_at' => 'datetime:U',
             'status' => CartStatus::class,
         ];
     }
