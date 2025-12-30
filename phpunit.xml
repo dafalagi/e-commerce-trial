@@ -19,6 +19,7 @@
             <directory>tests/Unit/Order/Cart</directory>
             <directory>tests/Unit/Order/CartItem</directory>
             <directory>tests/Unit/Order/Order</directory>
+            <directory>tests/Unit/Order/OrderItem</directory>
         </testsuite>
         <testsuite name="Feature">
             <!-- <directory>tests/Feature</directory> -->
