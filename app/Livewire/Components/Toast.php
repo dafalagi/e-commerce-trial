@@ -10,12 +10,13 @@ class Toast extends Component
     
     protected $listeners = ['showToast'];
     
-    public function showToast($type, $message)
+    public function showToast($type, $message, $duration = null)
     {
         $this->messages[] = [
             'id' => uniqid(),
             'type' => $type,
             'message' => $message,
+            'duration' => $duration ?? 2000,
         ];
     }
     

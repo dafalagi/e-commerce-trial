@@ -8,7 +8,7 @@
             setTimeout(() => {
                 show = false;
                 setTimeout(() => $wire.removeToast('{{ $message['id'] }}'), 300);
-            }, 2000);
+            }, {{ $message['duration'] }});
         "
         x-show="show"
         x-transition:enter="transition ease-out duration-300"

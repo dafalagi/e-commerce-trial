@@ -17,7 +17,6 @@
 
     <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
     <script>
-
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
 
@@ -25,9 +24,16 @@
             cluster: 'ap1'
         });
 
-        let channel = pusher.subscribe('my-channel');
-        channel.bind('my-event', function(data) {
-        alert(JSON.stringify(data));
+        // Subscribe to user-specific notification channel
+        let notificationChannel = pusher.subscribe('user.{{ Auth::user()->uuid }}');
+
+        notificationChannel.bind('low-stock-alert', function(data) {
+            Livewire.dispatch('showToast', {
+                type: 'warning',
+                message: data.message,
+                duration: 4000,
+            });
+            Livewire.dispatch('notification-updated');
         });
     </script>
 </head>

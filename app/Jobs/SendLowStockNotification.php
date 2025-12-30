@@ -54,17 +54,15 @@ class SendLowStockNotification implements ShouldQueue
             ]
         ])['data'];
 
-        // Broadcast::on('user.' . $this->user_uuid)
-        //     ->with([
-        //         'type' => 'low_stock_alert',
-        //         'notification' => [
-        //             'id' => $notification->id,
-        //             'title' => $notification->title,
-        //             'message' => $notification->message,
-        //             'created_at' => $notification->created_at->toISOString(),
-        //             'is_read' => false
-        //         ]
-        //     ])
-        //     ->send();
+        Broadcast::on('user.' . $this->user_uuid)
+            ->as('low-stock-alert')
+            ->with([
+                'id' => $notification->id,
+                'title' => $notification->title,
+                'message' => $notification->message,
+                'created_at' => date('Y-m-d H:i:s', $notification->created_at),
+                'is_read' => false,
+            ])
+            ->send();
     }
 }
