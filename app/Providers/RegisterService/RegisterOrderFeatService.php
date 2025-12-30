@@ -23,5 +23,12 @@ class RegisterOrderFeatService extends AppServiceProvider
         $this->registerService('DeleteCartItemService', \App\Services\Order\CartItem\DeleteCartItemService::class);
         $this->registerService('GetCartItemService', \App\Services\Order\CartItem\GetCartItemService::class);
         $this->registerService('RemoveCartItemService', \App\Services\Order\CartItem\RemoveCartItemService::class);
+
+        /** Order */
+        $this->registerService('StoreOrderService', \App\Services\Order\Order\StoreOrderService::class);
+        $this->registerService('UpdateOrderService', \App\Services\Order\Order\UpdateOrderService::class);
+        $this->registerService('DeleteOrderService', \App\Services\Order\Order\DeleteOrderService::class);
+        $this->registerService('GetOrderService', \App\Services\Order\Order\GetOrderService::class);
+        $this->registerService('CreateOrderService', \App\Services\Order\Order\CreateOrderService::class);
     }
 }

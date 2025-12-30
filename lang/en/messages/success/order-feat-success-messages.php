@@ -20,4 +20,13 @@ return [
         'fetched' => 'Cart Item successfully fetched.',
         'removed' => 'Cart Item successfully removed.',
     ],
+
+    /** Order */
+    'order' => [
+        'stored' => 'Order successfully stored.',
+        'updated' => 'Order successfully updated.',
+        'deleted' => 'Order successfully deleted.',
+        'fetched' => 'Order successfully fetched.',
+        'created' => 'Order successfully created.',
+    ],
 ];
