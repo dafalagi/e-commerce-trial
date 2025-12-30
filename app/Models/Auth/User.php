@@ -2,6 +2,7 @@
 
 namespace App\Models\Auth;
 
+use App\Models\Notification\Notification;
 use App\Models\Order\Cart;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -57,6 +58,7 @@ class User extends Authenticatable
         return [
             'userRole',
             'carts',
+            'notifications',
         ];
     }
 
@@ -73,5 +75,10 @@ class User extends Authenticatable
     public function carts()
     {
         return $this->hasMany(Cart::class, 'user_id');
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'user_id');
     }
 }
