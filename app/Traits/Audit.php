@@ -19,15 +19,17 @@ trait Audit
     public function prepareAuditInsert($object)
     {
         $object->{'uuid'} = generate_uuid();
-        $object->{'created_at'} =  now()->timestamp;
-        $object->{'created_by'}  =  Auth::user()->id ?? null;
+        $object->{'created_at'} = now()->timestamp;
+        $object->{'updated_at'} = now()->timestamp;
+        $object->{'created_by'} = Auth::user()->id ?? null;
+        $object->{'updated_by'} = Auth::user()->id ?? null;
         $object->{'version'} = 0;
     }
 
     public function prepareAuditUpdate($object)
     {
-        $object->{'updated_at'} =  now()->timestamp;
-        $object->{'updated_by'} =  Auth::user()->id ?? null;
+        $object->{'updated_at'} = now()->timestamp;
+        $object->{'updated_by'} = Auth::user()->id ?? null;
         $object->{'version'} = $object->{'version'} + 1;
     }
 

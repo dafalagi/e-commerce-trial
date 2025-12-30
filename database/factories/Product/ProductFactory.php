@@ -30,7 +30,7 @@ class ProductFactory extends Factory
             'updated_by' => null,
             'deleted_by' => null,
             'created_at' => now()->timestamp,
-            'updated_at' => null,
+            'updated_at' => now()->timestamp,
             'deleted_at' => null,
         ];
     }
