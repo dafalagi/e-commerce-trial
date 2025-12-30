@@ -20,8 +20,20 @@ class Order extends BaseModel
         ];
     }
 
+    public function getRestrictOnDeleteRelations(): array
+    {
+        return [
+            'orderItems',
+        ];
+    }
+
     public function cart()
     {
         return $this->belongsTo(Cart::class, 'cart_id');
+    }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class, 'order_id');
     }
 }
