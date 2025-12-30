@@ -55,7 +55,7 @@
                             <div class="flex items-center justify-between mb-3">
                                 <div>
                                     <h3 class="text-sm font-medium text-gray-900">Order #{{ substr($order->uuid, 0, 8) }}</h3>
-                                    <p class="text-xs text-gray-500">{{ date('M j, Y g:i A', $order->created_at) }}</p>
+                                    <p class="text-xs text-gray-500">{{ $order->created_at->format('M j, Y g:i A') }}</p>
                                 </div>
                                 <div class="text-right">
                                     <p class="text-sm font-semibold text-gray-900">${{ number_format($order->total_price, 2) }}</p>
@@ -63,7 +63,7 @@
                                         @if($order->payment_status === 'paid') bg-green-100 text-green-800
                                         @elseif($order->payment_status === 'pending') bg-yellow-100 text-yellow-800
                                         @else bg-red-100 text-red-800 @endif">
-                                        {{ ucfirst($order->payment_status) }}
+                                        {{ ucfirst($order->payment_status->label()) }}
                                     </span>
                                 </div>
                             </div>
