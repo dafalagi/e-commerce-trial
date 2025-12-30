@@ -21,6 +21,7 @@ class UpdateUserService extends DefaultService implements ServiceInterface
         $model->email = $dto['email'] ?? $model->email;
         $model->email_verified_at = $dto['email_verified_at'] ?? $model->email_verified_at;
         $model->password = $dto['password'] ?? $model->password;
+        $model->timezone = $dto['timezone'] ?? $model->timezone;
 
         $this->validateVersion($model, $dto['version']);
         $this->prepareAuditUpdate($model);
@@ -48,9 +49,10 @@ class UpdateUserService extends DefaultService implements ServiceInterface
             'user_id' => ['nullable', 'integer', new ExistsId(new User)],
             'user_uuid' => ['required_without:user_id', 'uuid', new ExistsUuid(new User)],
 
-            'email' => ['required', 'email', new UniqueData('auth_users', 'email', $dto['user_id'] ?? $dto['user_uuid'])],
+            'email' => ['nullable', 'email', new UniqueData('auth_users', 'email', $dto['user_id'] ?? $dto['user_uuid'])],
             'email_verified_at' => ['nullable', 'date'],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+            'timezone' => ['nullable', 'string'],
             
             'version' => ['required', 'integer'],
         ];

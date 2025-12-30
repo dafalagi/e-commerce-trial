@@ -18,6 +18,7 @@ class Login extends Component
     public string $password = '';
     
     public bool $remember = false;
+    public string $timezone = '';
     
     public function login()
     {
@@ -29,6 +30,12 @@ class Login extends Component
         }
         
         session()->regenerate();
+
+        app('UpdateUserService')->execute([
+            'user_id' => Auth::user()->id,
+            'timezone' => $this->timezone,
+            'version' => Auth::user()->version,
+        ]);
         
         $this->redirect(route('products.index'), navigate: true);
     }

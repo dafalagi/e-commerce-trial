@@ -9,6 +9,8 @@ use App\Traits\Pagination;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 
 abstract class DefaultService implements ServiceInterface
 {
@@ -63,6 +65,9 @@ abstract class DefaultService implements ServiceInterface
                 }
             }
 
+            Config::set('app.timezone', Auth::check() ? (Auth::user()->timezone ?? 'UTC') : 'UTC');
+            date_default_timezone_set(Config::get('app.timezone'));
+
             return $this->results;
         } else {
             $validator = Validator::make($inputData, $this->rules($inputData), $this->messages($inputData));
@@ -71,6 +76,10 @@ abstract class DefaultService implements ServiceInterface
             }
 
             $this->process($inputData);
+
+            Config::set('app.timezone', Auth::check() ? (Auth::user()->timezone ?? 'UTC') : 'UTC');
+            date_default_timezone_set(Config::get('app.timezone'));
+
             return $this->results;
         }
     }

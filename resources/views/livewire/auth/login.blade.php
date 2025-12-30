@@ -44,6 +44,16 @@
             @enderror
         </div>
 
+        <!-- Send Client's Timezone -->
+        <input 
+            type="hidden" 
+            wire:model="timezone" 
+            x-data 
+            x-init="
+                $wire.set('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone);
+            "
+        >
+
         <!-- Remember Me -->
         <div class="flex items-center">
             <input 

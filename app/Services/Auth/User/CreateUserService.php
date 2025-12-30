@@ -17,6 +17,7 @@ class CreateUserService extends DefaultService implements ServiceInterface
         $user = app('StoreUserService')->execute([
             'email' => $dto['email'],
             'password' => $dto['password'],
+            'timezone' => $dto['timezone'] ?? null,
         ], true)['data'];
 
         app('AddUserRoleService')->execute([
@@ -38,6 +39,7 @@ class CreateUserService extends DefaultService implements ServiceInterface
         return [
             'email' => ['required', 'email', new UniqueData('auth_users', 'email')],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'timezone' => ['nullable', 'string'],
 
             'role_uuid' => ['required', 'uuid', new ExistsUuid(new Role)],
         ];

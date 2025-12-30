@@ -19,6 +19,7 @@ class StoreUserService extends DefaultService implements ServiceInterface
         $model->email = $dto['email'];
         $model->email_verified_at = $dto['email_verified_at'] ?? null;
         $model->password = $dto['password'];
+        $model->timezone = $dto['timezone'] ?? null;
 
         $this->prepareAuditActive($model);
         $this->prepareAuditInsert($model);
@@ -42,6 +43,7 @@ class StoreUserService extends DefaultService implements ServiceInterface
             'email' => ['required', 'email', new UniqueData('auth_users', 'email')],
             'email_verified_at' => ['nullable', 'date'],
             'password' => ['required', 'string', 'min:8'],
+            'timezone' => ['nullable', 'string'],
         ];
     }
 }
