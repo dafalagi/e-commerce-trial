@@ -1,0 +1,54 @@
+<?php
+
+namespace App\Services\Notification\Notification;
+
+use App\Models\Auth\User;
+use App\Models\Notification\Notification;
+use App\Services\DefaultService;
+use App\Services\ServiceInterface;
+
+class GetNotificationService extends DefaultService implements ServiceInterface {
+
+    public function process($dto)
+    {
+        $dto['per_page'] = $dto['per_page'] ?? 10;
+        $dto['page'] = $dto['page'] ?? 1;
+        $dto['sort_by'] = $dto['sort_by'] ?? 'updated_at';
+        $dto['sort_type'] = $dto['sort_type'] ?? 'desc';
+
+        $model = Notification::orderBy($dto['sort_by'], $dto['sort_type']);
+
+        // Add secondary sort by id to ensure consistent ordering
+        if ($dto['sort_by'] !== 'id') {
+            $model->orderBy('id', 'desc');
+        }
+
+        if (isset($dto['with'])) {
+            $model->with($dto['with']);
+        }
+
+        if (isset($dto['search_param']) and $dto['search_param'] != null) {
+            $model->where('title','ILIKE','%'.$dto['search_param'].'%');
+        }
+
+        if (isset($dto['user_id']) or isset($dto['user_uuid'])) {
+            $user_id = $dto['user_id'] ?? $this->findIdByUuid(User::query(), $dto['user_uuid']);
+            $model->where('user_id', $user_id);
+        }
+
+        if (isset($dto['notification_uuid']) and $dto['notification_uuid'] != '') {
+            $model->where('uuid', $dto['notification_uuid']);
+            $data = $model->first();
+        } else {
+            if (isset($dto['with_pagination'])) {
+                $this->results['pagination'] = $this->paginationDetail($dto['per_page'], $dto['page'], $model->count());
+                $model = $this->paginateData($model, $dto['per_page'], $dto['page']);
+            }
+
+            $data = $model->get();
+        }
+
+        $this->results['message'] = __('success.notification.notification.fetched');
+        $this->results['data'] = $data;
+    }
+}
