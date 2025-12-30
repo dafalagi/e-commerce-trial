@@ -13,10 +13,6 @@ class Notification extends BaseModel
     protected function casts(): array
     {
         return [
-            'created_at' => 'datetime:U',
-            'updated_at' => 'datetime:U',
-            'deleted_at' => 'datetime:U',
-
             'type' => NotificationType::class,
             'payload' => 'array',
         ];

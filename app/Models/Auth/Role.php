@@ -8,17 +8,6 @@ class Role extends BaseModel
 {
     protected $table = 'auth_roles';
 
-    protected $hidden = [
-        'id',
-        'is_active',
-        'created_by',
-        'updated_by',
-        'deleted_by',
-        'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
-
     public function getRestrictOnDeleteRelations()
     {
         return [

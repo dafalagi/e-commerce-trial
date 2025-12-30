@@ -35,7 +35,7 @@ trait Audit
 
     public function prepareAuditRemove($object)
     {
-        $object->{'deleted_at'} =  now()->timestamp;
+        $object->{'deleted_at'} = now()->timestamp;
         $object->{'deleted_by'} = Auth::user()->id ?? null;
     }
 
