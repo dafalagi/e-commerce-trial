@@ -35,10 +35,9 @@ class CartModal extends Component
             return;
         }
 
-        // Get active cart for current user
         $result = app('GetCartService')->execute([
             'user_uuid' => Auth::user()->uuid,
-            'status' => 'active',
+            'status' => CartStatus::ACTIVE->value,
             'with' => ['cartItems.product']
         ], true);
 
@@ -59,7 +58,6 @@ class CartModal extends Component
             $this->item_count = 0;
         }
 
-        // Dispatch event to update cart counter
         $this->dispatch('cart-count-updated', count: $this->item_count);
     }
 
