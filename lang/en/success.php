@@ -16,4 +16,5 @@ return [
     'file_system' => require __DIR__ . '/messages/success/file-system-feat-success-messages.php',
     'order' => require __DIR__ . '/messages/success/order-feat-success-messages.php',
     'product' => require __DIR__ . '/messages/success/product-feat-success-messages.php',
+    'notification' => require __DIR__ . '/messages/success/notification-feat-success-messages.php',
 ];
