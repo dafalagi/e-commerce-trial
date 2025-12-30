@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function show()
+    public function show($order_uuid)
     {
-        return view('');
+        return view('orders.detail', [
+            'order_uuid' => $order_uuid
+        ]);
     }
 }

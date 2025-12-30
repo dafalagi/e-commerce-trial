@@ -50,9 +50,9 @@ class OrderHistoryModal extends Component
         $this->orders = $result['data'];
     }
 
-    public function viewOrderDetail($orderUuid)
+    public function viewOrderDetail($order_uuid)
     {
-        $this->redirect(route('orders.detail', $orderUuid), navigate: true);
+        $this->redirect(route('orders.show', $order_uuid), navigate: true);
     }
 
     public function render()
