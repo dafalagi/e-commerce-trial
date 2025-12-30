@@ -30,7 +30,7 @@ class Login extends Component
         
         session()->regenerate();
         
-        return redirect()->intended(route('products.index'));
+        $this->redirect(route('products.index'), navigate: true);
     }
 
     public function render()
