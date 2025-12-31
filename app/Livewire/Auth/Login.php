@@ -28,9 +28,7 @@ class Login extends Component
     {
         $this->validate();
         
-        $credentials = ['email' => $this->email, 'password' => $this->password];
-        
-        if (!$this->checkUser($credentials)) {
+        if (!$this->checkUser()) {
             $this->showErrorToast('These credentials do not match our records.');
             return;
         }
@@ -40,11 +38,11 @@ class Login extends Component
         $this->dispatch('login-success');
     }
 
-    public function checkUser($credentials)
+    public function checkUser()
     {
-        $this->user = User::where('email', $credentials['email'])->first();
+        $this->user = User::where('email', $this->email)->first();
 
-        return $this->user && Hash::check($credentials['password'], $this->user->password);
+        return $this->user && Hash::check($this->password, $this->user->password);
     }
 
     public function setRememberTokenExpiry()
