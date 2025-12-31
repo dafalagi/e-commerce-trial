@@ -4,7 +4,7 @@ A modern e-commerce application built with Laravel 12 and Livewire. **This proje
 
 ## 📋 Table of Contents
 
-- [About](?tab=readme-ov-file#about)
+- [About](#about)
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Installation](#installation)
