@@ -14,6 +14,8 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
+
+    <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
 </head>
 <body class="h-full font-sans antialiased bg-gray-50">
     <!-- Toast Container -->
