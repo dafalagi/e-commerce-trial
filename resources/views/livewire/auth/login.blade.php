@@ -73,11 +73,13 @@
             <button 
                 type="submit" 
                 wire:loading.attr="disabled"
+                wire:target="login"
                 class="relative flex w-full justify-center items-center rounded-md bg-indigo-600 px-3 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-75 disabled:cursor-not-allowed transition-all duration-200 min-h-[42px]"
             >
                 <!-- Loading Spinner -->
                 <svg 
                     wire:loading 
+                    wire:target="login"
                     class="animate-spin h-4 w-4 text-white mr-2" 
                     xmlns="http://www.w3.org/2000/svg" 
                     fill="none" 
@@ -90,6 +92,7 @@
                 <!-- Button Text -->
                 <span 
                     wire:loading.remove 
+                    wire:target="login"
                     class="flex items-center justify-center"
                 >
                     Sign in
@@ -98,6 +101,7 @@
                 <!-- Loading Text -->
                 <span 
                     wire:loading 
+                    wire:target="login"
                     class="flex items-center justify-center"
                 >
                     Signing in...
@@ -125,9 +129,13 @@
                 </a>
             </p>
             <p class="mt-2 text-sm leading-6 text-gray-600">
-                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500 transition-colors duration-200">
+                <button 
+                    type="button"
+                    wire:click="$dispatch('open-forgot-password')"
+                    class="font-medium text-indigo-600 hover:text-indigo-500 transition-colors duration-200"
+                >
                     Forgot your password?
-                </a>
+                </button>
             </p>
         </div>
     </div>

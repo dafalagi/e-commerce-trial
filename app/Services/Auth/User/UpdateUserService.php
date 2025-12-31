@@ -51,7 +51,7 @@ class UpdateUserService extends DefaultService implements ServiceInterface
 
             'email' => ['nullable', 'email', new UniqueData('auth_users', 'email', $dto['user_id'] ?? $dto['user_uuid'])],
             'email_verified_at' => ['nullable', 'date'],
-            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+            'password' => ['nullable', 'string', 'min:8'],
             'timezone' => ['nullable', 'string'],
             
             'version' => ['required', 'integer'],

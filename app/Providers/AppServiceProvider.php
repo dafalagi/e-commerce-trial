@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
         Passport::refreshTokensExpireIn(CarbonInterval::days(14));
         
         ResetPassword::createUrlUsing(function (User $user, string $token) {
-            return env('FE_URL').'/reset-password?token='.$token.'&email='.urlencode($user->email);
+            return env('APP_URL').'/reset-password/'.$token.'?email='.urlencode($user->email);
         });
         
         Relation::morphMap([
