@@ -7,7 +7,14 @@
             setTimeout(() => show = true, 50);
             setTimeout(() => {
                 show = false;
-                setTimeout(() => $wire.removeToast('{{ $message['id'] }}'), 300);
+                setTimeout(() => {
+                    try {
+                        $wire.removeToast('{{ $message['id'] }}');
+                    } catch (error) {
+                        // Component may have been destroyed during navigation
+                        console.log('Toast cleanup skipped - component no longer available');
+                    }
+                }, 300);
             }, {{ $message['duration'] }});
         "
         x-show="show"
@@ -19,7 +26,7 @@
         x-transition:leave-end="opacity-0 scale-95"
         class="relative flex items-start p-4 rounded-lg shadow-lg border max-w-sm w-full transform
             @if($message['type'] === 'error') bg-red-50 border-red-200 text-red-800
-            @elseif($message['type'] === 'success') bg-red-50 border-green-200 text-green-800
+            @elseif($message['type'] === 'success') bg-green-50 border-green-200 text-green-800
             @elseif($message['type'] === 'warning') bg-yellow-50 border-yellow-200 text-yellow-800
             @elseif($message['type'] === 'info') bg-blue-50 border-blue-200 text-blue-800
             @else bg-gray-50 border-gray-200 text-gray-800

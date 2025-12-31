@@ -23,6 +23,11 @@ class AuthController extends Controller
         
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+        // Clear all cookies
+        foreach ($request->cookies->keys() as $cookieName) {
+            cookie()->queue(cookie()->forget($cookieName));
+        }
         
         return redirect()->route('login');
     }

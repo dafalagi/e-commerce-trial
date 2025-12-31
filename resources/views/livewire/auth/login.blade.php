@@ -1,4 +1,5 @@
-<div class="bg-white px-6 py-8 shadow-sm ring-1 ring-gray-900/5 rounded-lg">
+<div class="bg-white px-6 py-8 shadow-sm ring-1 ring-gray-900/5 rounded-lg"
+    x-on:login-success.window="setTimeout(() => $wire.redirectToProducts(), 2500)">
     <form wire:submit="login" class="space-y-6">
         <!-- Email Input -->
         <div>

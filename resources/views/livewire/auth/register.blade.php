@@ -1,6 +1,5 @@
 <div class="bg-white px-6 py-8 shadow-sm ring-1 ring-gray-900/5 rounded-lg"
-     x-data 
-     x-on:redirect-after-success.window="setTimeout(() => $wire.redirectToProducts(), 2000)">
+    x-on:register-success.window="setTimeout(() => $wire.redirectToProducts(), 2500)">
     <form wire:submit="register" class="space-y-6">
         <!-- Email Input -->
         <div>

@@ -52,7 +52,7 @@ class Register extends Component
             
             DB::commit();
             
-            $this->dispatch('redirect-after-success');
+            $this->dispatch('register-success');
         } catch (\Exception $e) {
             DB::rollBack();
             $this->showErrorToast($e->getMessage());

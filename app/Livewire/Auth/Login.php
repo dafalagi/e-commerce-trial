@@ -28,14 +28,21 @@ class Login extends Component
             $this->showErrorToast('These credentials do not match our records.');
             return;
         }
-        
-        session()->regenerate();
 
         app('UpdateUserService')->execute([
             'user_id' => Auth::user()->id,
             'timezone' => $this->timezone,
             'version' => Auth::user()->version,
         ]);
+        
+        $this->showSuccessToast('Login successful! Welcome back!');
+
+        $this->dispatch('login-success');
+    }
+
+    public function redirectToProducts()
+    {
+        session()->regenerate();
         
         $this->redirect(route('products.index'), navigate: true);
     }
