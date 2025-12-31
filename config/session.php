@@ -214,4 +214,6 @@ return [
 
     'partitioned' => env('SESSION_PARTITIONED_COOKIE', false),
 
+    'remember_token_expiry' => env('REMEMBER_TOKEN_EXPIRY', 43200), // in minutes (default: 30 days)
+
 ];

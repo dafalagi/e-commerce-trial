@@ -4,6 +4,7 @@ namespace App\Livewire\Auth;
 
 use App\Traits\WithToast;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Livewire\Component;
 
 class Login extends Component
@@ -24,9 +25,15 @@ class Login extends Component
     {
         $this->validate();
         
-        if (!Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
+        $credentials = ['email' => $this->email, 'password' => $this->password];
+        
+        if (!Auth::attempt($credentials, $this->remember)) {
             $this->showErrorToast('These credentials do not match our records.');
             return;
+        }
+        
+        if ($this->remember) {
+            $this->setRememberTokenExpiry();
         }
 
         app('UpdateUserService')->execute([
@@ -40,10 +47,18 @@ class Login extends Component
         $this->dispatch('login-success');
     }
 
+    public function setRememberTokenExpiry()
+    {
+        $remember_token_expiry = config('session.remember_token_expiry');
+        $remember_token_name = Auth::getRecallerName();
+
+        Cookie::queue($remember_token_name, Cookie::get($remember_token_name), $remember_token_expiry);
+    }
+
     public function redirectToProducts()
     {
         session()->regenerate();
-        
+
         $this->redirect(route('products.index'), navigate: true);
     }
 
