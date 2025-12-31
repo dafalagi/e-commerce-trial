@@ -1,66 +1,258 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# E-Commerce Trial Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern e-commerce application built with Laravel 12 and Livewire. **This project is primarily designed for learning purposes** to demonstrate Laravel best practices, e-commerce functionality, and modern web development patterns.
 
-## About Laravel
+## 📋 Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [About](#about)
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [API Documentation](#api-documentation)
+- [Contributing](#contributing)
+- [License](#license)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🎯 About
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+This e-commerce application serves as a comprehensive learning platform showcasing:
+- Modern Laravel development patterns
+- E-commerce business logic implementation
+- Role-based authentication and authorization
+- Real-time notifications and queue management
+- Clean architecture with proper separation of concerns
 
-## Learning Laravel
+**Note: This is an educational project designed to help developers understand Laravel and e-commerce concepts.**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ✨ Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Core E-commerce Features
+- **Product Management**: CRUD operations for products with image handling
+- **Shopping Cart**: Add, remove, and manage cart items
+- **Order Management**: Complete order lifecycle from cart to completion
+- **User Authentication**: Secure login/register with Laravel Passport
+- **Role-Based Access Control**: Admin, user roles with permission system
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Advanced Features
+- **Real-time Notifications**: Queue-based notification system for low stock alerts
+- **Email Reports**: Daily sales reports for administrators
+- **Image Processing**: Automatic image optimization with Intervention Image
+- **Queue Management**: Background job processing for notifications and emails
+- **API Integration**: RESTful API with Passport authentication
+- **Live Components**: Interactive UI with Livewire components
 
-## Laravel Sponsors
+### Development Tools
+- **Laravel Telescope**: Application debugging and monitoring
+- **PHPUnit Testing**: Unit and feature test coverage
+- **Code Quality**: Laravel Pint for code formatting
+- **Hot Reload**: Vite for fast frontend development
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🛠 Technology Stack
 
-### Premium Partners
+**Backend:**
+- Laravel 12.x (PHP 8.3+)
+- MySQL Database
+- Laravel Passport (OAuth2 API Authentication)
+- Queue Workers for background jobs
+- Laravel Telescope for debugging
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+**Frontend:**
+- Livewire 3.x for reactive components
+- TailwindCSS 4.x for styling
+- Vite for asset building
+- Alpine.js (via Livewire)
 
-## Contributing
+**Third-party Services:**
+- Intervention Image for image processing
+- Resend for email delivery
+- Pusher for real-time broadcasting
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🚀 Installation
 
-## Code of Conduct
+### Prerequisites
+- PHP 8.3 or higher
+- Composer
+- Node.js & npm
+- MySQL/MariaDB
+- Redis (optional, for queues)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Setup Steps
 
-## Security Vulnerabilities
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd e-commerce-trial
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2. **Install PHP dependencies**
+   ```bash
+   composer install
+   ```
 
-## License
+3. **Install Node.js dependencies**
+   ```bash
+   npm install
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. **Environment setup**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+5. **Configure your `.env` file**
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=ecommerce_trial
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+   
+   QUEUE_CONNECTION=database
+   ```
+
+6. **Run database migrations**
+   ```bash
+   php artisan migrate
+   ```
+
+7. **Seed the database**
+   ```bash
+   php artisan db:seed
+   ```
+
+8. **Install Laravel Passport**
+   ```bash
+   php artisan passport:install
+   ```
+
+9. **Build frontend assets**
+   ```bash
+   npm run build
+   # or for development
+   npm run dev
+   ```
+
+10. **Start the application**
+    ```bash
+    php artisan serve
+    ```
+
+11. **Start queue workers** (in a separate terminal)
+    ```bash
+    php artisan queue:work --queue=notifications,default
+    ```
+
+## 🎮 Usage
+
+### Development Mode
+```bash
+# Start Laravel development server
+php artisan serve
+
+# Start Vite development server (hot reload)
+npm run dev
+
+# Start queue worker
+php artisan queue:work
+```
+
+### Production
+```bash
+# Build assets for production
+npm run build
+
+# Optimize Laravel for production
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+```
+
+## 📁 Project Structure
+
+```
+app/
+├── Enums/                 # Application enumerations
+│   ├── Notification/      # Notification types
+│   └── Order/            # Order and payment statuses
+├── Helpers/              # Global helper functions
+├── Http/
+│   ├── Controllers/      # API and web controllers
+│   └── Middleware/       # Custom middleware
+├── Jobs/                 # Queue jobs
+├── Livewire/            # Livewire components
+│   ├── Auth/            # Authentication components
+│   ├── Order/           # Order management
+│   └── Product/         # Product listing and management
+├── Mail/                # Email templates
+├── Models/              # Eloquent models
+│   ├── Auth/           # User, Role, Permission models
+│   ├── Order/          # Cart, Order models
+│   └── Product/        # Product models
+└── Services/           # Business logic services
+```
+
+## 📚 Learning Objectives
+
+This project demonstrates:
+
+1. **Laravel Fundamentals**
+   - Eloquent ORM
+   - Blade templating engine
+   - Authentication and authorization
+
+2. **Advanced Laravel Concepts**
+   - Queue and job processing
+   - Service oriented architecture
+
+3. **E-commerce Patterns**
+   - Shopping cart implementation
+   - Order management workflow
+   - Inventory tracking
+   - Payment status handling
+
+4. **Modern Web Development**
+   - Component-based UI with Livewire
+   - Real-time features
+   - Responsive design with TailwindCSS
+
+## 🧪 Testing
+
+Run the test suite:
+```bash
+# Run all tests
+php artisan test
+
+# Run specific test types
+php artisan test --testsuite=Feature
+php artisan test --testsuite=Unit
+
+# Generate coverage report
+php artisan test --coverage
+```
+
+## 🤝 Contributing
+
+Since this is a learning project, contributions are welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📝 License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## 🔗 Resources
+
+- [Laravel Documentation](https://laravel.com/docs)
+- [Livewire Documentation](https://livewire.laravel.com)
+- [TailwindCSS Documentation](https://tailwindcss.com)
+
+---
+
+**Happy Learning! 🎓**
