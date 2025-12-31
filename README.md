@@ -4,7 +4,7 @@ A modern e-commerce application built with Laravel 12 and Livewire. **This proje
 
 ## 📋 Table of Contents
 
-- [About](#about)
+- [About](?tab=readme-ov-file#about)
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Installation](#installation)
@@ -28,34 +28,28 @@ This e-commerce application serves as a comprehensive learning platform showcasi
 ## ✨ Features
 
 ### Core E-commerce Features
-- **Product Management**: CRUD operations for products with image handling
 - **Shopping Cart**: Add, remove, and manage cart items
 - **Order Management**: Complete order lifecycle from cart to completion
-- **User Authentication**: Secure login/register with Laravel Passport
 - **Role-Based Access Control**: Admin, user roles with permission system
 
 ### Advanced Features
 - **Real-time Notifications**: Queue-based notification system for low stock alerts
 - **Email Reports**: Daily sales reports for administrators
-- **Image Processing**: Automatic image optimization with Intervention Image
 - **Queue Management**: Background job processing for notifications and emails
-- **API Integration**: RESTful API with Passport authentication
 - **Live Components**: Interactive UI with Livewire components
 
 ### Development Tools
 - **Laravel Telescope**: Application debugging and monitoring
 - **PHPUnit Testing**: Unit and feature test coverage
-- **Code Quality**: Laravel Pint for code formatting
 - **Hot Reload**: Vite for fast frontend development
 
 ## 🛠 Technology Stack
 
 **Backend:**
 - Laravel 12.x (PHP 8.3+)
-- MySQL Database
-- Laravel Passport (OAuth2 API Authentication)
+- PostgreSQL Database
 - Queue Workers for background jobs
-- Laravel Telescope for debugging
+- Laravel Telescope & Clockwork for debugging
 
 **Frontend:**
 - Livewire 3.x for reactive components
@@ -64,7 +58,6 @@ This e-commerce application serves as a comprehensive learning platform showcasi
 - Alpine.js (via Livewire)
 
 **Third-party Services:**
-- Intervention Image for image processing
 - Resend for email delivery
 - Pusher for real-time broadcasting
 
@@ -123,24 +116,19 @@ This e-commerce application serves as a comprehensive learning platform showcasi
    php artisan db:seed
    ```
 
-8. **Install Laravel Passport**
-   ```bash
-   php artisan passport:install
-   ```
-
-9. **Build frontend assets**
+8. **Build frontend assets**
    ```bash
    npm run build
    # or for development
    npm run dev
    ```
 
-10. **Start the application**
+9. **Start the application**
     ```bash
     php artisan serve
     ```
 
-11. **Start queue workers** (in a separate terminal)
+10. **Start queue workers** (in a separate terminal)
     ```bash
     php artisan queue:work --queue=notifications,default
     ```
