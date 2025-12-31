@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Auth;
 
+use App\Models\Auth\User;
 use App\Traits\WithToast;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
 class Login extends Component
@@ -15,6 +17,7 @@ class Login extends Component
     public $password = '';
     public $remember = false;
     public $timezone = '';
+    public $user = null;
 
     protected $rules = [
         'email' => ['required', 'email'],
@@ -27,24 +30,21 @@ class Login extends Component
         
         $credentials = ['email' => $this->email, 'password' => $this->password];
         
-        if (!Auth::attempt($credentials, $this->remember)) {
+        if (!$this->checkUser($credentials)) {
             $this->showErrorToast('These credentials do not match our records.');
             return;
         }
         
-        if ($this->remember) {
-            $this->setRememberTokenExpiry();
-        }
-
-        app('UpdateUserService')->execute([
-            'user_id' => Auth::user()->id,
-            'timezone' => $this->timezone,
-            'version' => Auth::user()->version,
-        ]);
-        
         $this->showSuccessToast('Login successful! Welcome back!');
 
         $this->dispatch('login-success');
+    }
+
+    public function checkUser($credentials)
+    {
+        $this->user = User::where('email', $credentials['email'])->first();
+
+        return $this->user && Hash::check($credentials['password'], $this->user->password);
     }
 
     public function setRememberTokenExpiry()
@@ -57,7 +57,18 @@ class Login extends Component
 
     public function redirectToProducts()
     {
+        app('UpdateUserService')->execute([
+            'user_id' => $this->user->id,
+            'timezone' => $this->timezone,
+            'version' => $this->user->version,
+        ]);
+
+        Auth::login($this->user, $this->remember);
         session()->regenerate();
+
+        if ($this->remember) {
+            $this->setRememberTokenExpiry();
+        }
 
         $this->redirect(route('products.index'), navigate: true);
     }
