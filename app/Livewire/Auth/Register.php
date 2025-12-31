@@ -66,7 +66,7 @@ class Register extends Component
         Auth::loginUsingId($this->user->id, true);
         session()->regenerate();
 
-        return $this->redirect(route('products.index'), navigate: true);
+        $this->redirect(route('products.index'), navigate: true);
     }
 
     public function render()
