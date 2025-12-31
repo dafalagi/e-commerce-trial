@@ -4,21 +4,21 @@ namespace App\Livewire\Auth;
 
 use App\Traits\WithToast;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class Login extends Component
 {
     use WithToast;
     
-    #[Rule('required|email')]
-    public string $email = '';
-    
-    #[Rule('required|min:6')]
-    public string $password = '';
-    
-    public bool $remember = false;
-    public string $timezone = '';
+    public $email = '';
+    public $password = '';
+    public $remember = false;
+    public $timezone = '';
+
+    protected $rules = [
+        'email' => ['required', 'email'],
+        'password' => ['required', 'string', 'min:8'],
+    ];
     
     public function login()
     {
