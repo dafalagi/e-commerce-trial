@@ -20,6 +20,12 @@ class RoleSeeder extends Seeder
                 'description' => 'Admin',
                 'envs_eligibility' => 'admin',
             ],
+            [
+                'name' => 'Customer',
+                'code' => 'customer',
+                'description' => 'Customer',
+                'envs_eligibility' => 'web',
+            ]
         ];
 
         foreach($roles as $role) {

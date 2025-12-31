@@ -31,4 +31,9 @@ class AuthController extends Controller
     {
         return view('auth.reset-password', ['token' => $token, 'email' => $request->email]);
     }
+
+    public function register()
+    {
+        return view('auth.register');
+    }
 }

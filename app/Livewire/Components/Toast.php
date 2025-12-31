@@ -2,14 +2,14 @@
 
 namespace App\Livewire\Components;
 
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Toast extends Component
 {
     public $messages = [];
     
-    protected $listeners = ['showToast'];
-    
+    #[On('showToast')]
     public function showToast($type, $message, $duration = null)
     {
         $this->messages[] = [
