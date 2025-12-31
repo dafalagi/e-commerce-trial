@@ -19,7 +19,6 @@ class ResetPassword extends Component
     protected $rules = [
         'email' => ['required', 'email', 'exists:auth_users,email'],
         'password' => ['required', 'string', 'min:8', 'confirmed'],
-        'token' => ['required', 'string']
     ];
 
     protected $messages = [
